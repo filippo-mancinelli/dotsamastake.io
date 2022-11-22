@@ -1,4 +1,4 @@
-package src.main.java;
+package backend.src.main.java;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
