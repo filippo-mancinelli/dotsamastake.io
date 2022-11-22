@@ -64,7 +64,7 @@
 									<artifactId>frontend</artifactId>
 									<type>jar</type>
 									<overWrite>true</overWrite>
-									<outputDirectory>${project.build.directory}/classes/static</outputDirectory>
+									<outputDirectory>./target/classes/static</outputDirectory>
 								</artifactItem>
 							</artifactItems>
 						</configuration>

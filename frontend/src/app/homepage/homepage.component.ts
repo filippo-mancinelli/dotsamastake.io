@@ -11,11 +11,7 @@ export class HomepageComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get('http://localhost:8080/message').pipe(
-      first(),
-      tap(result => console.log('Message received from the server: ', result)),
-      map(result => this.message = (result as any).message)
-    ).subscribe();
+    this.http.get('http://localhost:8080/message').subscribe();
   }
 
 }
