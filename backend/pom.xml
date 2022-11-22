@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>dotsamastake.io</groupId>
+		<artifactId>CORE</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<packaging>pom</packaging>
+	
+	<artifactId>BACKEND</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>dotsamastake</name>
+	<description>Dotsamastake backend</description>
+
+	<properties>
+		<java.version>17</java.version>
+		<start-class>src.main.java.DotsamastakeApplication.java</start-class>
+	</properties>
+
+	<dependencies>
+
+	</dependencies>
+
+	<build>
+		<finalName>DotsamastakeApplication</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+
+				<configuration>
+					<skip>true</skip>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>DotsamastakeApplication</mainClass>
+						</manifest>
+					</archive>
+       			 </configuration>
+            </plugin>
+        </plugins>
+	</build>
+
+</project>
