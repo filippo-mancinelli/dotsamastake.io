@@ -1,47 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
-		<groupId>dotsamastake.io</groupId>
-		<artifactId>CORE</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<groupId>dotsamastake</groupId>
+		<artifactId>dotsamastake-app</artifactId>
+		<version>0.0.1</version>
 	</parent>
-	<packaging>pom</packaging>
-	
-	<artifactId>BACKEND</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>dotsamastake</name>
-	<description>Dotsamastake backend</description>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>backend</artifactId>
+	<version>0.0.1</version>
+
 
 	<properties>
-		<java.version>17</java.version>
-		<start-class>src.main.java.DotsamastakeApplication.java</start-class>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.outputEncoding>UTF-8</project.build.outputEncoding>
 	</properties>
 
-	<dependencies>
 
+	<dependencies>
+		<dependency>
+			<groupId>dotsamastake</groupId>
+			<artifactId>frontend</artifactId>
+			<version>0.0.1</version>
+			<type>jar</type>
+		</dependency>
 	</dependencies>
 
 	<build>
-		<finalName>DotsamastakeApplication</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.7.5</version>
 				<configuration>
-					<skip>true</skip>
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<mainClass>DotsamastakeApplication</mainClass>
-						</manifest>
-					</archive>
-       			 </configuration>
-            </plugin>
-        </plugins>
-	</build>
+					<mainClass>dev.marco.example.springboot.Application</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.1.2</version>
+				<executions>
+					<execution>
+						<id>merge</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>dotsamastake</groupId>
+									<artifactId>frontend</artifactId>
+									<type>jar</type>
+									<overWrite>true</overWrite>
+									<outputDirectory>${project.build.directory}/classes/static</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
