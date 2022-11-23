@@ -62,10 +62,10 @@
 							<phase>validate</phase>
 							<goals><goal>copy-resources</goal></goals>
 							<configuration>
-								<outputDirectory>${project.build.directory}/classes/resources/</outputDirectory>
+								<outputDirectory>${project.build.directory}/frontend</outputDirectory>
 								<resources>
 									<resource>
-										<directory>${project.parent.basedir}/frontend/dist/dotsama</directory>
+										<directory>${project.parent.basedir}/frontend/dist/dotsama/</directory>
 									</resource>
 								</resources>
 							</configuration>
