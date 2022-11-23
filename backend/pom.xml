@@ -39,7 +39,8 @@
 					<artifactId>spring-boot-maven-plugin</artifactId>
 
 					<configuration>
-						<mainClass>com.dotsamastake.io.DotsamastakeApplication</mainClass>
+						<mainClass>DotsamastakeApplication</mainClass>
+						<classesDirectory>${project.build.outputDirectory}</classesDirectory>
 						<layout>JAR</layout>
 					</configuration>
 
@@ -70,6 +71,14 @@
 							</configuration>
 						</execution>
 					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<configuration>
+						<classesDirectory>${project.build.outputDirectory}</classesDirectory>
+					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
