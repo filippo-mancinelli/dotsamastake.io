@@ -16,6 +16,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.outputEncoding>UTF-8</project.build.outputEncoding>
+		<maven.compiler.release>17</maven.compiler.release>
+		<java.version>17.0.5</java.version>
 	</properties>
 
 
@@ -24,53 +26,52 @@
 			<groupId>dotsamastake</groupId>
 			<artifactId>frontend</artifactId>
 			<version>0.0.1</version>
-			<type>jar</type>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>2.7.5</version>
-				<configuration>
-					<mainClass>dev.marco.example.springboot.Application</mainClass>
-				</configuration>
-				<executions>
+		<pluginManagement>
+			<plugins>
+				<!--SPRING-BOOT-MAVEN-PLUGIN-->
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+
+					<configuration>
+						<mainClass>com.dotsamastake.io.DotsamastakeApplication</mainClass>
+						<layout>JAR</layout>
+					</configuration>
+
+					<executions>
 					<execution>
 						<goals>
 							<goal>repackage</goal>
 						</goals>
 					</execution>
-				</executions>
-			</plugin>
+					</executions>
+				</plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<version>3.1.2</version>
-				<executions>
-					<execution>
-						<id>merge</id>
-						<phase>initialize</phase>
-						<goals>
-							<goal>unpack</goal>
-						</goals>
-						<configuration>
-							<artifactItems>
-								<artifactItem>
-									<groupId>dotsamastake</groupId>
-									<artifactId>frontend</artifactId>
-									<type>jar</type>
-									<overWrite>true</overWrite>
-									<outputDirectory>./target/classes/static</outputDirectory>
-								</artifactItem>
-							</artifactItems>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
+				<!--maven dist-->
+				<plugin>
+					<artifactId>maven-resources-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>copy-resources</id>
+							<phase>validate</phase>
+							<goals><goal>copy-resources</goal></goals>
+							<configuration>
+								<outputDirectory>${project.build.directory}/classes/resources/</outputDirectory>
+								<resources>
+									<resource>
+										<directory>${project.parent.basedir}/frontend/dist/dotsama</directory>
+									</resource>
+								</resources>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 </project>
