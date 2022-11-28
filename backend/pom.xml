@@ -40,38 +40,45 @@
 
 					<configuration>
 						<mainClass>DotsamastakeApplication</mainClass>
-						<classesDirectory>${project.build.outputDirectory}</classesDirectory>
+						<classesDirectory>./target/classes/com.dotsamastake.io/</classesDirectory>
 						<layout>JAR</layout>
 					</configuration>
 
 					<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-					</execution>
+						<execution>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+						</execution>
 					</executions>
 				</plugin>
 
 				<!--maven dist-->
-				<plugin>
-					<artifactId>maven-resources-plugin</artifactId>
-					<executions>
-						<execution>
-							<id>copy-resources</id>
-							<phase>validate</phase>
-							<goals><goal>copy-resources</goal></goals>
-							<configuration>
-								<outputDirectory>${project.build.directory}/frontend</outputDirectory>
-								<resources>
-									<resource>
-										<directory>${project.parent.basedir}/frontend/dist/dotsama/</directory>
-									</resource>
-								</resources>
-							</configuration>
-						</execution>
-					</executions>
-				</plugin>
+           <plugin> 
+                <groupId>org.apache.maven.plugins</groupId> 
+                <artifactId>maven-dependency-plugin</artifactId> 
+                <version>3.1.2</version> 
+                <executions> 
+                    <execution> 
+                        <id>merge</id> 
+                        <phase>initialize</phase> 
+                        <goals> 
+                            <goal>unpack</goal> 
+                        </goals> 
+                        <configuration> 
+                            <artifactItems> 
+                                <artifactItem> 
+                                    <groupId>dotsamastake</groupId> 
+                                    <artifactId>dotsamastake-app</artifactId> 
+                                    <type>jar</type> 
+                                    <overWrite>true</overWrite> 
+                                    <outputDirectory>${project.build.directory}/classes/static</outputDirectory> 
+                                </artifactItem> 
+                            </artifactItems> 
+                        </configuration> 
+                    </execution> 
+                </executions> 
+            </plugin> 
 
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
