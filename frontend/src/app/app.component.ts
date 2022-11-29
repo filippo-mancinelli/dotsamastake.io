@@ -4,25 +4,30 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomepageComponent } from './homepage/homepage.component';
 import { User } from './user/user.component';
 import { FormsModule } from '@angular/forms';
+import { UserFormComponent } from './user-form/user-form.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     HomepageComponent,
+    UserFormComponent,
     User
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   exports: [
-    User
+    User,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: []
 })
-export class AppModule { 
+export class AppComponent { 
   title: string;
 
   constructor() {
-    this.title = 'Spring Boot - Angular Application';
+    this.title = 'Spring Boot - Angular app';
   }
 }
