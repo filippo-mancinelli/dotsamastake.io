@@ -4,7 +4,6 @@
 /frontend/target
 /frontend/node
 /frontend/node_modules
-/frontend/
 # Compiled class file
 *.class
 
