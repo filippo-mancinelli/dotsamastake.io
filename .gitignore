@@ -26,6 +26,5 @@
 hs_err_pid*
 .vscode/settings.json
 target/maven-archiver/pom.properties
-.gitpod.yml
 /backend/target/
 .vscode/launch.json
