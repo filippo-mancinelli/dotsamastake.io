@@ -6,7 +6,7 @@ tasks:
   - name: Install jdk 17.0.5 
     before: echo '🛠️ Installing and using jdk 17.0.5 ... '
     init: sdk install java 17.0.5-oracle
-    command: sdk default java 17.0.5-oracle &&  &&  && npm install 
+    command: sdk default java 17.0.5-oracle  
 
   - name: Install angular CLI 
     before: echo '🕹️ Installing angular and dependencies ...'
@@ -14,6 +14,7 @@ tasks:
     command: cd frontend/dotsamastake && npm install
 
   - name: compile and install maven 
+    before: echo '🪶 compiling and installing maven and dependencies ...'
     init: ./mvnw install -DskipTests=false 
 
 ports:
