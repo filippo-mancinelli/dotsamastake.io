@@ -8,6 +8,8 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { User } from './components/user/user.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { AboutComponent } from './components/about/about.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { MenuComponent } from './components/menu/menu.component';
     HomepageComponent,
     User,
     UserListComponent,
-    MenuComponent
+    MenuComponent,
+    AboutComponent,
+    FooterComponent
   ],
   imports: [
     HttpClientModule,
