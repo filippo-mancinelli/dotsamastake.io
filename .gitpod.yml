@@ -15,7 +15,8 @@ tasks:
 
   - name: compile and install maven 
     before: echo '🪶 compiling and installing maven and dependencies ...'
-    init: ./mvnw install -DskipTests=false 
+    init: sleep 15
+    command: ./mvnw install -DskipTests=false 
 
 ports:
   - port: 4200
