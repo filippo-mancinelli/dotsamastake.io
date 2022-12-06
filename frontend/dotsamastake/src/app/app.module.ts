@@ -3,6 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { User } from './components/user/user.component';
@@ -25,7 +28,9 @@ import { FooterComponent } from './components/footer/footer.component';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    CarouselModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

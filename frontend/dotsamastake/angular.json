@@ -23,9 +23,22 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/animated.css",
+              "src/assets/css/fontawesome.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
+              "/node_modules/isotope/dist/isotope.scss",
+              "src/assets/css/templatemo-space-dynamic.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/animation.js",
+              "src/assets/js/isotope.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/imagesloaded/imagesloaded.js",
+              "src/assets/js/tabs.js",
+              "src/assets/js/templatemo-custom.js"
+            ]
           },
           "configurations": {
             "production": {
