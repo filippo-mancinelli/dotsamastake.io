@@ -2,7 +2,7 @@
 
 </script>
 
-<header class="w-full h-20 z-30 border-b-[3px] border-gray-900 sticky top-0 z-50 bg-white shadow-md flex justify-between relative items-stretch md:divide-x-[3px] divide-gray-900 " >
+<header class="w-full h-20 border-b-[3px] border-gray-900 sticky top-0 z-50 bg-white shadow-md flex justify-between items-stretch md:divide-x-[3px] divide-gray-900 " >
     <a href="#_" class="flex flex-shrink-0 text-gray-900 items-center justify-center h-full p-5">
         <!-- svelte-ignore a11y-missing-attribute -->
         <img src="/public/logo.png" class="h-8" alt="Dotsamastake.io">
