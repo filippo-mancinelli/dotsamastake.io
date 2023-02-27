@@ -8,7 +8,7 @@ import { writable, derived } from 'svelte/store';
 export let isConnected = writable(localStorage.getItem('isConnected') === 'true'); 
 isConnected.subscribe(value => console.log(value));
 
-let buttonClass = ''
+let buttonClass = '';
 
 const buttonColor = derived(
     [isConnected],
