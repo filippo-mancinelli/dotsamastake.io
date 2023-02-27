@@ -1,62 +1,66 @@
 <script>
 import { ApiPromise, WsProvider } from '@polkadot/api';
-import { isWeb3Injected, web3Enable  } from '@polkadot/extension-dapp';
+import { isWeb3Injected, web3Accounts, web3AccountsSubscribe, web3Enable } from '@polkadot/extension-dapp';
 import { onMount, onDestroy } from 'svelte';
 import { writable, derived } from 'svelte/store';
 
-//check if the variable is already in the local cache
-export let isConnected = writable(localStorage.getItem('isConnected') === 'true'); 
-isConnected.subscribe(value => console.log(value));
+//check if the variable is already in the local cache and put it inside the store
+export let isConnected = writable(localStorage.getItem('isConnected') === 'true');
+let buttonColors = writable('');
+let unsubscribe;
 
-let buttonClass = '';
 
-const buttonColor = derived(
-    [isConnected],
-    ([isConnected]) => {
-      if (isConnected) {
-        return 'text-white bg-zinc-900';
-      } else {
-        return 'text-black bg-[#FFFDF8]';
-      }
-    }
-  );
-  
-  function updateButtonClass() {
-    buttonClass = String(buttonColor);
-  }
-
-// Listen to the disconnect event
-window.addEventListener('polkadotJsExtensionDisconnected', () => {
-  isConnected.set(false);
-  localStorage.setItem('isConnected', String(false));
-  isConnected.subscribe(value => console.log(value));
-});
-
-onMount(() => {
-    updateButtonClass();
-  });
-  
-
-// Cleanup function
-onDestroy(() => {
-  window.removeEventListener('polkadotJsExtensionDisconnected', () => {
-    isConnected.set(false);
-    localStorage.setItem('isConnected', String(false));
-  });
-});
-
-async function connectWallet() {
-  if (await isWeb3Injected) {
-    const allInjected = await web3Enable('Your App Name');
-    if(allInjected.length > 0) {
-      isConnected.set(true);
-      localStorage.setItem('isConnected', String(true)); //this ensures that the state is persisted in the local cache between page refreshes
-    }
-    
+//reactive block that updates the colors of the button whenever 'isConnected' changes
+$: {
+  if($isConnected) {
+    isConnected.set(true);
+    console.log($isConnected)
+    buttonColors.set('text-white bg-zinc-900');
   } else {
-    console.log('Polkadot JS Wallet Extension is not installed');
+    isConnected.set(false);
+    console.log($isConnected)
+    buttonColors.set('text-black bg-[#FFFDF8]');
   }
 }
+
+async function connectWallet() {
+  let extension = await web3Enable('dotsamastake.io');
+  
+  if (extension.length > 0) { //check if the extension is installed
+
+    // we subscribe to any account change and log the new list. We also check if there is no account connected so we can update isConnected acccordingly
+    unsubscribe = await web3AccountsSubscribe(( injectedAccounts ) => { 
+        injectedAccounts.map(( accounts ) => {
+            console.log(accounts.address); 
+        });
+
+        if(injectedAccounts.length === 0) {
+          isConnected.set(false);
+          console.log($isConnected)
+        } else {
+          isConnected.set(true);
+          console.log($isConnected)
+        }
+    });
+
+  } else {
+    console.log('Polkadot JS Wallet Extension is not installed, or user rejected to connect');
+  }
+}
+
+//when the component is mounted, it add an event listener waiting for the page to be refreshed/closed, 
+//and before the unload it saves the connection status in the local cache
+onMount(() => {
+    window.addEventListener('beforeunload', () => {
+      localStorage.setItem('isConnected', String($isConnected))
+    });
+  });
+
+//when the component is destroyed we don't need anymore to listen to account changes
+onDestroy(() => {
+  unsubscribe && unsubscribe();
+});
+
 
 </script>
 
@@ -72,8 +76,8 @@ async function connectWallet() {
             <a href="#_" class="hover:underline md:border-b-0 text-center py-6 border-b-[3px] border-gray-900 md:w-auto w-full 2xl:font-mono 2xl:font-light 2xl:text-xl">Contact</a>
         </nav>
         <div class="flex flex-shrink-0 md:flex-row flex-col md:bg-transparent bg-[#FFFDF8] font-medium border-l-0 md:border-l-[3px] border-gray-900 items-center">
-          <button on:click={connectWallet} class=" ${buttonClass} px-8 h-full md:py-0 py-6 md:w-auto w-full flex items-center justify-center 2xl:flex 2xl:font-mono 2xl:font-light">
-            {#if isConnected}
+          <button on:click={connectWallet} class=" {$buttonColors} px-8 h-full md:py-0 py-6 md:w-auto w-full flex items-center justify-center 2xl:flex 2xl:font-mono 2xl:font-light">
+            {#if $isConnected}
                 Connected
               {:else}
                 Connect your wallet
