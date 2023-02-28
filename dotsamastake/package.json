@@ -21,6 +21,8 @@
     "@polkadot/extension": "^0.22.1",
     "@polkadot/extension-dapp": "^0.44.9",
     "@polkadot/util": "*",
-    "@polkadot/util-crypto": "*"
+    "@polkadot/util-crypto": "*",
+    "sv-bootstrap-dropdown": "^0.4.4",
+    "svelte-typewriter": "^3.1.4"
   }
 }
