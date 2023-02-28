@@ -1,6 +1,7 @@
 <script>
   import Header from "./Header.svelte";
-
+  import About from "./About.svelte";
+  import Contact from "./Contact.svelte";
   
 </script>
 
@@ -13,6 +14,10 @@
         <div class="2xl:contents lg:contents md:contents flex justify-center items-center h-screen tails-selected-element" contenteditable="true">
           <h1 spellcheck="false" class="w-auto text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter inline-block text-left md:text-center relative lg:grid 2xl:font-mono 2xl:font-medium xl:font-mono xl:font-medium lg:font-medium lg:font-mono md:font-medium md:font-mono sm:font-medium sm:font-mono xl:relative md:inline sm:container sm:items-start sm:w-full sm:text-center 2xl:py-60 xl:py-60 lg:py-60 md:py-60 sm:pt-60 mx-auto">Reliable validator nodes<div class="">on Kusama.</div></h1>
         </div>                  
+
+        <About />
+
+        <Contact />
 
       <footer class="sm:h-20 h-auto z-20 border-t-[3px] sm:pb-0 pb-3 w-full border-gray-900 sm:space-y-0 space-y-3 flex sm:flex-row flex-col items-center justify-center flex-shrink-0">
           <p class="text-sm opacity-70 sm:mt-0 mt-3">Find us on twitter -&gt;</p>
