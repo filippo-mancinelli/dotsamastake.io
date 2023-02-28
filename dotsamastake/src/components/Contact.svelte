@@ -27,12 +27,12 @@
                     
                     <div class="relative w-full mt-10 space-y-8">
                         <div class="relative">
-                            <label class="font-medium text-gray-900 lg:font-mono">Name</label>
-                            <input type="text" class="block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-600 focus:ring-opacity-50 lg:font-mono" data-primary="blue-600" data-rounded="rounded-lg" placeholder="Enter Your Name">
+                            <label for="name-input" class="font-medium text-gray-900 lg:font-mono">Name</label>
+                            <input id="name-input" type="text" class="block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-lg focus:outline-none focus:ring-4 focus:ring-black focus:ring-opacity-50 lg:font-mono" data-primary="blue-600" data-rounded="rounded-lg" placeholder="Enter Your Name">
                         </div>
                         <div class="relative">
-                            <label class="font-medium text-gray-900 lg:font-mono">Email</label>
-                            <input type="text" class="block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-600 focus:ring-opacity-50 lg:font-mono" data-primary="blue-600" data-rounded="rounded-lg" placeholder="Enter Your Email Address">
+                            <label for="email-input" class="font-medium text-gray-900 lg:font-mono">Email</label>
+                            <input id="email-input" type="text" class="block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-lg focus:outline-none focus:ring-4 focus:ring-black focus:ring-opacity-50 lg:font-mono" data-primary="blue-600" data-rounded="rounded-lg" placeholder="Enter Your Email Address">
                         </div>
                         
                         <div class="relative">
