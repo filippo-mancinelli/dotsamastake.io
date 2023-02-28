@@ -86,14 +86,14 @@ onDestroy(() => {
 
         <div class="flex flex-shrink-0 md:flex-row flex-col md:bg-transparent bg-[#FFFDF8] font-medium border-l-0 md:border-l-[3px] border-gray-900 items-center">
           {#if !$isConnected}
-          <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" on:click={connectWallet} class=" {$buttonColors} px-8 h-full md:py-0 py-6 md:w-auto w-full flex items-center justify-center 2xl:flex 2xl:font-mono 2xl:font-light">
-                Connect your wallet
+            <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" on:click={connectWallet} class="{$buttonColors} px-8 h-full md:py-0 py-6 md:w-auto w-full flex items-center justify-center 2xl:flex 2xl:font-mono 2xl:font-light">
+                  Connect your wallet
             </button>
           {/if} 
 
             {#if $isConnected}
               <Dropdown triggerElement={dropdownTrigger}>
-                <button type="button" class="btn btn-secondary dropdown-toggle" bind:this={dropdownTrigger}>
+                <button type="button" class="{$buttonColors} px-8 h-full md:py-0 py-6 md:w-auto w-full flex items-center justify-center 2xl:flex 2xl:font-mono 2xl:font-light" bind:this={dropdownTrigger}>
                     Connected
                 </button>
                 <div slot="DropdownMenu">
