@@ -3,7 +3,7 @@
 </script>
 
 
-<section class="w-full bg-white pt-7 pb-7 md:pt-20 md:pb-24 tails-selected-element border-black border-4">
+<section id="about" class="w-full bg-white pt-7 pb-7 md:pt-20 md:pb-24 tails-selected-element border-black border-4">
     <div class="box-border flex flex-col items-center content-center px-8 mx-auto leading-6 text-black border-0 border-gray-300 border-solid md:flex-row max-w-7xl lg:px-16">
 
         <!-- Image -->

@@ -12,7 +12,7 @@
   <Header />
 
   <body>
-      <section class="w-screen bg-[#FFFDF8] min-h-screen md:h-screen flex flex-col justify-between md:items-start items-between 2xl:bg-red-200 lg:bg-red-200 md:bg-red-200 sm:bg-red-200" data-tails-scripts="//unpkg.com/alpinejs">
+      <section class="w-screen min-h-screen md:h-screen flex flex-col justify-between md:items-start items-between bg-red-200" data-tails-scripts="//unpkg.com/alpinejs">
               
         <Home />
 

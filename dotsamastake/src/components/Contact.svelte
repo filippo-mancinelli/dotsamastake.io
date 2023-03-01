@@ -3,7 +3,7 @@
 </script>
 
 
-<section class="w-full bg-white tails-selected-element">
+<section id="contact" class="w-full bg-white tails-selected-element">
 
     <div class="mx-auto max-w-7xl">
         <div class="flex flex-col lg:flex-row">
@@ -36,7 +36,7 @@
                         </div>
                         
                         <div class="relative">
-                            <a href="#_" class="inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-white rounded-lg hover:bg-zinc-700 ease lg:font-mono lg:bg-zinc-900" data-primary="bg-zinc-900" data-rounded="rounded-lg">Send message</a>
+                            <a href="#_" class="inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-zinc-900, rounded-lg hover:bg-zinc-700 ease lg:font-mono" data-primary="bg-zinc-900" data-rounded="rounded-lg">Send message</a>
                             
                         </div>
                     </div>

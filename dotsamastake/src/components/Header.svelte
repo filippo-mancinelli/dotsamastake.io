@@ -60,6 +60,13 @@ function disconnectWallet() {
   isConnected.set(false);
 }
 
+function scrollToSection(id) {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
 //when the component is mounted, it add an event listener waiting for the page to be refreshed/closed, 
 //and before the unload it saves the connection status in the local cache
 onMount(() => {
@@ -73,19 +80,18 @@ onDestroy(() => {
   unsubscribe && unsubscribe();
 });
 
-
 </script>
 
 <header class="w-full h-20 border-b-[3px] border-gray-900 sticky top-0 z-50 bg-white shadow-md flex justify-between items-stretch md:divide-x-[3px] divide-gray-900 " >
-    <a href="#_" class="flex flex-shrink-0 text-gray-900 items-center justify-center h-full p-5">
+    <a href="#_" class="flex flex-shrink-0 text-gray-900 items-center justify-center h-full p-4">
         <!-- svelte-ignore a11y-missing-attribute -->
         <img src="/logo.png" class="h-8" alt="Dotsamastake.io">
     </a>
     <div class="w-full md:flex hidden md:flex-row flex-col md:relative absolute h-screen md:pt-0 pt-20 md:h-full items-stretch justify-between">
         <nav class="w-full md:space-x-8 font-medium md:bg-transparent bg-[#FFFDF8] md:px-8 h-full flex md:flex-row flex-col z-20 items-center">
-            <a href="#home" class="hover:underline md:border-b-0 text-center py-6 border-b-[3px] border-gray-900 md:w-auto w-full 2xl:font-mono 2xl:font-light 2xl:text-xl">Home</a>
-            <a href="#about" class="hover:underline md:border-b-0 text-center py-6 border-b-[3px] border-gray-900 md:w-auto w-full 2xl:font-mono 2xl:font-light 2xl:text-xl">About</a>
-            <a href="#contact" class="hover:underline md:border-b-0 text-center py-6 border-b-[3px] border-gray-900 md:w-auto w-full 2xl:font-mono 2xl:font-light 2xl:text-xl">Contact</a>
+            <a href="#_" on:click={() => scrollToSection('home')} class="hover:underline md:border-b-0 text-center py-6 border-b-[3px] border-gray-900 md:w-auto w-full 2xl:font-mono 2xl:font-light 2xl:text-xl">Home</a>
+            <a href="#_" on:click={() => scrollToSection('about')} class="hover:underline md:border-b-0 text-center py-6 border-b-[3px] border-gray-900 md:w-auto w-full 2xl:font-mono 2xl:font-light 2xl:text-xl">About</a>
+            <a href="#_" on:click={() => scrollToSection('contact')} class="hover:underline md:border-b-0 text-center py-6 border-b-[3px] border-gray-900 md:w-auto w-full 2xl:font-mono 2xl:font-light 2xl:text-xl">Contact</a>
         </nav>
 
         <div class="{$buttonColors} flex flex-shrink-0 md:flex-row flex-col md:bg-transparent font-medium border-l-0 md:border-l-[3px] border-gray-900 items-center" style="background-color: {$isConnected ? 'black' : 'white'}">
