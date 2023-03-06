@@ -36,7 +36,12 @@
                         </div>
                         
                         <div class="relative">
+<<<<<<< HEAD
                             <a href="#_" class="inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-zinc-900, rounded-lg hover:bg-zinc-700 bg-zinc-900 ease lg:font-mono" data-primary="bg-zinc-900" data-rounded="rounded-lg">Send message</a>
+=======
+                            <a href="#_" class="inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-zinc-900 rounded-lg hover:bg-zinc-700 ease lg:font-mono" data-primary="bg-zinc-900" data-rounded="rounded-lg">Send message</a>
+                            
+>>>>>>> c63d31b74b1c4d78519391eba257d18b8d97d315
                         </div>
                     </div>
                 </div>

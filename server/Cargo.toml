@@ -8,4 +8,9 @@ edition = "2021"
 [dependencies]
 actix-web = "4"
 actix-rt = "2.4.1"
-lettre = "0.10.0"
+lettre = "0.10"
+serde = { version = "1.0.152", features = ["derive"] }
+ratelimit = "0.5.1"
+actix-governor = "0.4"
+env_logger = "0.10.0"
+dotenv = "0.15.0"

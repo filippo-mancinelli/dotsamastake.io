@@ -2,6 +2,8 @@ use lettre::message::header::ContentType;
 use lettre::transport::smtp::authentication::Credentials;
 use lettre::{Message, SmtpTransport, Transport};
 use serde::{Deserialize, Serialize};
+use dotenv::dotenv;
+use std::env;
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct EmailData {
@@ -11,26 +13,31 @@ pub struct EmailData {
 }
 
 pub fn send_email(data: &EmailData) -> Result<(), String> {
-    // create email
+    //load environment variables
+    dotenv().ok();
+
     let email = Message::builder()
         .from(format!("{}, <{}>", &data.name, &data.email).parse().unwrap())
         .to("Dotsamastake <node@dotsamastake.io>".parse().unwrap())
-        .subject("New message from {}", &data.name)
+        .subject(format!("New message from {}, {}", &data.name, &data.email))
         .header(ContentType::TEXT_PLAIN)
         .body(data.message.to_string())
         .unwrap();
 
     //create credentials struct
-    let creds = Credentials::new("andreasdfg02@gmail.com".to_owned(), "benetti1".to_owned());
+    let creds = Credentials::new(env::var("EMAIL").unwrap().to_owned(), env::var("PASSWORD").unwrap().to_owned());
 
-    // create transport
+    //open remote connection to gmail
     let transport = SmtpTransport::relay("smtp.gmail.com")
-        .map_err(|_| "Failed to connect to SMTP server")?
+        .unwrap()
         .credentials(creds)
         .build();
 
     // send email
-    transport.send(&email).map_err(|_| "Failed to send email")?;
+    match transport.send(&email) {
+        Ok(_) => println!("Email sent succesfully."),
+        Err(e) => panic!("Could not send email: {e:?}"),
+    }
 
     Ok(())
 }
