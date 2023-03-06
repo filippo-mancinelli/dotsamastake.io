@@ -1,6 +1,8 @@
 use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
-use serde::Deserialize;
-use actix_cors::Cors;
+use actix_governor::{Governor, GovernorConfigBuilder};
+use email::EmailData;
+use env_logger::Env;
+use actix_web::middleware::Logger;
 
 mod email;
 
@@ -11,26 +13,33 @@ async fn hello() -> impl Responder {
 
 #[post("/submit")]
 async fn submit(data: web::Json<EmailData>) -> impl Responder {
-    println!("data: {}"data);
-    let result = email::send_email(&data.into_inner()).await;   //into_inner() deserializes the actix JSON object
+    //into_inner() deserializes the actix JSON object
+    let result = email::send_email(&data.into_inner());   
 
     // Return a JSON response indicating whether the email was sent successfully
     match result {
         Ok(()) => HttpResponse::Ok().json("Email sent successfully"),
         Err(_) => HttpResponse::InternalServerError().json("Failed to send email"),
-    }
+    }    
 }
-
-let cors = Cors::default()
-    .allow_any_origin()
-    .allow_any_method()
-    .allow_any_header();
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    HttpServer::new(|| {
+    //logger
+    env_logger::init_from_env(Env::default().default_filter_or("info"));
+
+    // Allow bursts with up to five requests per IP address
+    let governor_conf = GovernorConfigBuilder::default()
+    .per_second(4)
+    .burst_size(5)
+    .finish()
+    .unwrap();
+
+    HttpServer::new(move || {
         App::new()
-            .wrap(cors)
+            .wrap(Logger::default())
+            .wrap(Logger::new("%a %{User-Agent}i"))
+            .wrap(Governor::new(&governor_conf))
             .service(hello)
             .service(submit)
     })
