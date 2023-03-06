@@ -13,7 +13,8 @@ pub struct EmailData {
 }
 
 pub fn send_email(data: &EmailData) -> Result<(), String> {
-    dotenv().ok();  //load environment variables
+    //load environment variables
+    dotenv().ok();
 
     let email = Message::builder()
         .from(format!("{}, <{}>", &data.name, &data.email).parse().unwrap())
