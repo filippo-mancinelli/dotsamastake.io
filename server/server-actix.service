@@ -1,0 +1,14 @@
+#Not recommended to use systemctl inside a container, see notion
+
+[Unit]
+Description=Actix-web Server
+
+[Service]
+User=ansible
+WorkingDirectory=/server/target/release
+ExecStart=/server/target/release/server
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

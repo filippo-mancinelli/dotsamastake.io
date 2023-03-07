@@ -43,7 +43,7 @@ async fn main() -> std::io::Result<()> {
             .service(hello)
             .service(submit)
     })
-    .bind(("127.0.0.1", 8080))?
+    .bind(("0.0.0.0", 8080))?   //ip address is 0.0.0.0 because it is meant to run inside a docker container
     .run()
     .await
 }
