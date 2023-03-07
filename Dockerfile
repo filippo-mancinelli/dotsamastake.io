@@ -1,17 +1,23 @@
-# Use the latest version of Ubuntu as the base image
-FROM ubuntu:latest
+# Use an official Node.js runtime as a parent image
+FROM node:16-alpine AS builder
 
-# Update the package list and install necessary dependencies
-RUN apt-get update && apt-get install -y \
-    curl \
-    build-essential \
-    libssl-dev \
-    pkg-config \
-    net-tools 
-
-# Create a new directory to store the Svelte application
-RUN mkdir /app
+# Set the working directory to /app
 WORKDIR /app
 
-# Copy the source code into the container
+# Copy the package.json and package-lock.json files to the container
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the application files to the container
 COPY . .
+
+# Build the production version of the app
+RUN npm run build
+
+# Expose port 80
+EXPOSE 5000
+
+# Start the Nginx server
+CMD ["npm", "start"]
